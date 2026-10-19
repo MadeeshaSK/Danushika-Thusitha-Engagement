@@ -1,0 +1,510 @@
+/* ============================================================
+   ENGAGEMENT WEBSITE — style.css
+   Danushika & Thusitha · 01 January 2027
+   ============================================================ */
+
+/* ─── CSS Variables ─── */
+:root {
+  --gold: #c9a84c;
+  --gold-light: #e8d48b;
+  --gold-dark: #9a7a2e;
+  --ivory: #faf6ef;
+  --ivory-dark: #f0e8d5;
+  --cream: #fdf8f0;
+  --brown: #5c4a2a;
+  --text: #3a2d1e;
+  --text-light: #7a6a54;
+  --white: #ffffff;
+  --shadow: rgba(150, 120, 50, 0.15);
+  --glow: rgba(201, 168, 76, 0.3);
+}
+
+/* ─── Reset ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Montserrat', sans-serif; background: var(--ivory); color: var(--text); overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+.hidden { display: none !important; }
+
+/* ─── Section Utility ─── */
+.section { padding: 80px 20px; position: relative; }
+.section-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+.section-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--brown);
+  margin-bottom: 50px;
+  line-height: 1.2;
+}
+.section-title em { font-style: italic; color: var(--gold); }
+.amp { font-family: 'Great Vibes', cursive; font-size: 1.3em; color: var(--gold); }
+
+/* ─── Scroll Reveal ─── */
+.reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   INVALID SCREEN
+   ============================================================ */
+.invalid-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1e1206 0%, #2d1c08 100%);
+  padding: 24px;
+}
+.invalid-box {
+  max-width: 420px;
+  text-align: center;
+  padding: 50px 36px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+.invalid-icon { font-size: 3.5rem; margin-bottom: 20px; }
+.invalid-box h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  color: var(--gold-light);
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+.invalid-box p {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.75;
+}
+
+/* ============================================================
+   WELCOME / SPLASH SCREEN  (desktop values kept exactly as before)
+   ============================================================ */
+.welcome-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.welcome-bg { position: absolute; inset: 0; z-index: 0; }
+.welcome-hero-img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5) saturate(0.8); }
+.welcome-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg,
+    rgba(30,20,5,0.55) 0%,
+    rgba(50,35,10,0.7) 50%,
+    rgba(20,12,3,0.85) 100%);
+}
+
+/* ── Particles container ── */
+.particles {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Each particle (heart or bubble) spawned by JS */
+.particle {
+  position: absolute;
+  bottom: -60px;
+  animation: floatUp linear infinite;
+  opacity: 0;
+}
+
+/* Hearts */
+.particle.heart {
+  font-size: 1.4rem;
+  filter: drop-shadow(0 0 6px rgba(255,150,150,0.6));
+  animation-name: floatUp;
+}
+
+/* Bubbles */
+.particle.bubble {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.7), rgba(201,168,76,0.15));
+  border: 1px solid rgba(201,168,76,0.4);
+  box-shadow: 0 0 8px rgba(201,168,76,0.3), inset 0 0 6px rgba(255,255,255,0.2);
+  animation-name: floatUpBubble;
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) translateX(0) scale(0.6); opacity: 0; }
+  10%  { opacity: 0.85; }
+  50%  { transform: translateY(-45vh) translateX(20px) scale(1); opacity: 0.7; }
+  90%  { opacity: 0.4; }
+  100% { transform: translateY(-105vh) translateX(-10px) scale(0.7); opacity: 0; }
+}
+
+@keyframes floatUpBubble {
+  0%   { transform: translateY(0) translateX(0) scale(0.5); opacity: 0; }
+  10%  { opacity: 0.7; }
+  50%  { transform: translateY(-50vh) translateX(-15px) scale(1.1); opacity: 0.55; }
+  90%  { opacity: 0.2; }
+  100% { transform: translateY(-110vh) translateX(10px) scale(0.6); opacity: 0; }
+}
+.welcome-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  max-width: 560px;
+  color: var(--ivory);
+  animation: fadeInUp 1.4s ease forwards;
+}
+@keyframes fadeInUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+
+.ornament { font-size: 0.9rem; letter-spacing: 0.3em; color: var(--gold-light); margin: 10px 0; }
+
+.guest-greeting {
+  background: rgba(201,168,76,0.12);
+  border: 1px solid rgba(201,168,76,0.45);
+  border-radius: 50px;
+  padding: 8px 20px;
+  margin-bottom: 16px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--gold-light);
+  letter-spacing: 0.08em;
+  display: inline-block;
+}
+
+.welcome-sub {
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 12px;
+  font-weight: 300;
+}
+.welcome-names {
+  font-family: 'Great Vibes', cursive;
+  font-size: 5.5rem;
+  color: var(--gold-light);
+  line-height: 1.1;
+  text-shadow: 0 2px 30px rgba(201,168,76,0.4);
+}
+.welcome-date {
+  font-size: 0.8rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  margin: 10px 0 24px;
+}
+
+/* Welcome Countdown */
+.welcome-countdown {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 18px auto 26px;
+}
+.wcd-box {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(201,168,76,0.45);
+  border-radius: 12px;
+  padding: 14px 16px;
+  min-width: 72px;
+  backdrop-filter: blur(6px);
+}
+.wcd-num {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  line-height: 1;
+  text-shadow: 0 0 15px rgba(201,168,76,0.5);
+}
+.wcd-label {
+  display: block;
+  font-size: 0.58rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-top: 5px;
+}
+
+/* Open Invitation Button — float + glow */
+.open-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 40px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--ivory);
+  border: none;
+  border-radius: 50px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 6px 30px var(--glow);
+  transition: box-shadow 0.3s ease;
+  margin-top: 6px;
+  animation: btnFloat 3s ease-in-out infinite;
+}
+.open-btn:hover {
+  animation: none;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(201,168,76,0.6);
+}
+
+@keyframes btnFloat {
+  0%, 100% { transform: translateY(0);   box-shadow: 0 6px 30px rgba(201,168,76,0.35); }
+  50%       { transform: translateY(-6px); box-shadow: 0 18px 48px rgba(201,168,76,0.6); }
+}
+.btn-icon { font-size: 1.1rem; }
+
+/* Music Button */
+.music-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9100;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: rgba(201,168,76,0.88);
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px var(--glow);
+  transition: transform 0.3s ease, background 0.3s ease;
+  animation: musicPulse 2.2s ease-in-out infinite;
+}
+.music-btn::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(201,168,76,0.6);
+  animation: musicRing 2.2s ease-in-out infinite;
+}
+.music-btn:hover {
+  transform: scale(1.15);
+  background: var(--gold);
+  animation: none;
+}
+.music-btn:hover::after { animation: none; opacity: 0; }
+
+@keyframes musicPulse {
+  0%, 100% { transform: scale(1);    box-shadow: 0 4px 15px rgba(201,168,76,0.35); }
+  50%       { transform: scale(1.1); box-shadow: 0 6px 28px rgba(201,168,76,0.7); }
+}
+@keyframes musicRing {
+  0%   { transform: scale(1);    opacity: 0.9; }
+  70%  { transform: scale(1.65); opacity: 0; }
+  100% { transform: scale(1.65); opacity: 0; }
+}
+
+
+/* ============================================================
+   INVITATION SECTION
+   ============================================================ */
+.invitation-section {
+  background: linear-gradient(180deg, var(--ivory) 0%, var(--ivory-dark) 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.inv-image-wrap {
+  max-width: 480px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(150,120,50,0.25), 0 0 0 3px rgba(201,168,76,0.2);
+  transition: box-shadow 0.4s ease;
+}
+.inv-image-wrap:hover {
+  box-shadow: 0 28px 70px rgba(150,120,50,0.35), 0 0 0 4px rgba(201,168,76,0.4);
+}
+.inv-original-img { width: 100%; height: auto; display: block; }
+
+/* ─── Action Buttons ─── */
+.inv-actions {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 28px 14px 14px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  min-width: 190px;
+  position: relative;
+  overflow: hidden;
+}
+.action-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.08);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.action-btn:hover::before { opacity: 1; }
+.action-btn:hover { transform: translateY(-4px); }
+.action-btn:active { transform: translateY(0); }
+
+.btn-icon-wrap {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.btn-icon-wrap svg { display: block; }
+
+.btn-label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.btn-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  color: #fff;
+}
+.btn-sub {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+  margin-top: 3px;
+}
+
+/* Location Button */
+.location-btn {
+  background: linear-gradient(135deg, #c9a84c 0%, #7a5c1e 100%);
+  box-shadow: 0 8px 30px rgba(201,168,76,0.45), 0 2px 8px rgba(0,0,0,0.15);
+}
+.location-btn:hover { box-shadow: 0 14px 42px rgba(201,168,76,0.6), 0 4px 12px rgba(0,0,0,0.2); }
+
+/* WhatsApp Button */
+.whatsapp-btn {
+  background: linear-gradient(135deg, #25D366 0%, #075E54 100%);
+  box-shadow: 0 8px 30px rgba(37,211,102,0.4), 0 2px 8px rgba(0,0,0,0.15);
+}
+.whatsapp-btn:hover { box-shadow: 0 14px 42px rgba(37,211,102,0.55), 0 4px 12px rgba(0,0,0,0.2); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  background: linear-gradient(135deg, #1e1206 0%, #2d1c08 100%);
+  text-align: center;
+  padding: 28px 20px;
+  border-top: 1px solid rgba(201,168,76,0.2);
+}
+.site-footer p {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.35);
+  letter-spacing: 0.08em;
+  line-height: 2;
+}
+.footer-dev a {
+  color: var(--gold-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.footer-dev a:hover { color: var(--gold); }
+
+
+/* ============================================================
+   RESPONSIVE — only for smaller devices, laptop untouched
+   ============================================================ */
+
+/* Tablet portrait (≤ 900px) */
+@media (max-width: 900px) {
+  .welcome-names { font-size: 4.5rem; }
+  .section-title { font-size: 2.4rem; }
+  .inv-image-wrap { max-width: 420px; }
+}
+
+/* Tablet (≤ 768px) */
+@media (max-width: 768px) {
+  .welcome-names { font-size: 3.8rem; }
+  .section-title { font-size: 2rem; margin-bottom: 32px; }
+  .section { padding: 60px 20px; }
+  .inv-image-wrap { max-width: 90vw; }
+  .inv-actions { gap: 14px; }
+  .action-btn { min-width: 160px; padding: 12px 20px 12px 12px; gap: 10px; }
+  .btn-icon-wrap { width: 40px; height: 40px; }
+  .btn-title { font-size: 0.85rem; }
+}
+
+/* Mobile landscape + large phones (≤ 600px) */
+@media (max-width: 600px) {
+  .welcome-names { font-size: 3rem; }
+  .wcd-num { font-size: 1.9rem; }
+  .wcd-box { min-width: 62px; padding: 12px 12px; }
+  .open-btn { padding: 13px 30px; font-size: 0.8rem; }
+  .section-title { font-size: 1.8rem; }
+  .inv-actions { gap: 12px; }
+}
+
+/* Mobile portrait (≤ 480px) */
+@media (max-width: 480px) {
+  .welcome-names { font-size: 2.6rem; }
+  .welcome-countdown { gap: 8px; }
+  .wcd-box { min-width: 56px; padding: 10px 10px; }
+  .wcd-num { font-size: 1.6rem; }
+  .wcd-label { font-size: 0.5rem; letter-spacing: 0.2em; }
+  .open-btn { width: 90%; max-width: 300px; justify-content: center; padding: 14px 20px; }
+  .section { padding: 48px 14px; }
+  .section-title { font-size: 1.65rem; margin-bottom: 26px; }
+  .inv-image-wrap { max-width: 95vw; border-radius: 10px; }
+  .inv-actions { flex-direction: column; align-items: center; gap: 12px; margin-top: 24px; }
+  .action-btn { width: 90%; max-width: 300px; padding: 12px 20px 12px 12px; min-width: unset; }
+  .btn-icon-wrap { width: 42px; height: 42px; }
+  .invalid-box { padding: 36px 18px; }
+  .invalid-box h2 { font-size: 1.5rem; }
+  .music-btn { bottom: 16px; right: 16px; width: 42px; height: 42px; }
+}
+
+/* Very small phones (≤ 360px) */
+@media (max-width: 360px) {
+  .welcome-names { font-size: 2.1rem; }
+  .welcome-countdown { gap: 5px; }
+  .wcd-box { min-width: 48px; padding: 8px 8px; }
+  .wcd-num { font-size: 1.4rem; }
+  .guest-greeting { font-size: 0.75rem; padding: 7px 14px; }
+  .ornament { font-size: 0.75rem; }
+  .welcome-sub { font-size: 0.6rem; }
+  .section-title { font-size: 1.5rem; }
+}

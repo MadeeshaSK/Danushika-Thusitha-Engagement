@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Danushika &amp; Thusitha – Engagement Invitation</title>
+  <meta name="description"
+    content="You are warmly invited to the engagement ceremony of Danushika and Thusitha on 1st January 2027 at Skyloft Kandy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ======== INVALID STATE (shown when no title+name in URL) ======== -->
+  <div id="invalidScreen" class="invalid-screen hidden">
+    <div class="invalid-box">
+      <div class="invalid-icon">💍</div>
+      <h2>Invalid Invitation Link</h2>
+      <p>This link does not appear to be a valid personalised invitation. Please scan the QR code on your printed
+        invitation card.</p>
+    </div>
+  </div>
+
+  <!-- ======================== WELCOME / SPLASH SCREEN ======================== -->
+  <section id="welcome" class="welcome-screen hidden">
+    <div class="welcome-overlay"></div>
+    <div class="welcome-bg">
+      <img src="couple_hero.png" alt="Couple" class="welcome-hero-img" />
+    </div>
+    <!-- Floating hearts & bubbles -->
+    <div id="particles" class="particles"></div>
+    <div class="welcome-content">
+
+      <!-- Guest personalised greeting -->
+      <div id="guestGreeting" class="guest-greeting"></div>
+
+      <div class="ornament top-ornament">✦ ── ✦ ── ✦</div>
+      <p class="welcome-sub">We joyfully announce the engagement of</p>
+      <h1 class="welcome-names">Danushika <span class="amp">&</span> Thusitha</h1>
+      <p class="welcome-date">Friday · 01 January 2027</p>
+      <div class="ornament bottom-ornament">✦ ── ✦ ── ✦</div>
+
+      <!-- Countdown on splash -->
+      <div class="welcome-countdown">
+        <div class="wcd-box"><span class="wcd-num" id="wcd-days">--</span><span class="wcd-label">Days</span></div>
+        <div class="wcd-box"><span class="wcd-num" id="wcd-hours">--</span><span class="wcd-label">Hours</span></div>
+        <div class="wcd-box"><span class="wcd-num" id="wcd-minutes">--</span><span class="wcd-label">Minutes</span>
+        </div>
+        <div class="wcd-box"><span class="wcd-num" id="wcd-seconds">--</span><span class="wcd-label">Seconds</span>
+        </div>
+      </div>
+
+      <button id="openInvitationBtn" class="open-btn">
+        <span class="btn-text">Open Our Invitation</span>
+        <span class="btn-icon">💍</span>
+      </button>
+    </div>
+
+    <!-- Music control -->
+    <button id="musicBtn" class="music-btn" title="Turn off music">
+      <span id="musicIcon">🔇</span>
+    </button>
+    <audio id="bgMusic" loop autoplay>
+      <source src="Engagement Music Wedding Music Proposal Ring Music Soft Piano Music Romantic Music (mp3cut.net).mp3"
+        type="audio/mpeg" />
+    </audio>
+  </section>
+
+  <!-- ======================== MAIN CONTENT ======================== -->
+  <main id="mainContent" class="main-content hidden">
+
+    <!-- ──── INVITATION CARD ──── -->
+    <section id="invitation" class="section invitation-section">
+      <div class="section-inner">
+        <div class="section-label">You Are Invited</div>
+        <h2 class="section-title">To Our <em>Engagement</em></h2>
+
+        <div class="inv-image-wrap reveal">
+          <canvas id="invitationCanvas" class="inv-original-img"></canvas>
+        </div>
+
+        <!-- Action buttons below the card -->
+        <div class="inv-actions reveal">
+          <a href="https://maps.app.goo.gl/dmWD6KAFsrQTjJhN6" target="_blank" rel="noopener"
+            class="action-btn location-btn">
+            <span class="btn-icon-wrap">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="26" height="26">
+                <path
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z" />
+              </svg>
+            </span>
+            <span class="btn-label">
+              <span class="btn-title">Get Directions</span>
+              <span class="btn-sub">Skyloft Kandy</span>
+            </span>
+          </a>
+          <a href="https://wa.me/94710771780?text=Hi%20Danushika!%20I%20received%20your%20engagement%20invitation.%20%F0%9F%8C%B8"
+            target="_blank" rel="noopener" class="action-btn whatsapp-btn">
+            <span class="btn-icon-wrap">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white" width="26" height="26">
+                <path
+                  d="M16 0C7.164 0 0 7.164 0 16c0 2.828.738 5.482 2.031 7.789L0 32l8.469-2.004A15.938 15.938 0 0 0 16 32c8.836 0 16-7.164 16-16S24.836 0 16 0zm0 29.333a13.3 13.3 0 0 1-6.787-1.856l-.486-.289-5.027 1.189 1.215-4.895-.317-.502A13.267 13.267 0 0 1 2.667 16C2.667 8.636 8.636 2.667 16 2.667S29.333 8.636 29.333 16 23.364 29.333 16 29.333zm7.307-9.907c-.4-.2-2.364-1.165-2.731-1.298-.366-.133-.633-.2-.899.2-.267.4-1.031 1.298-1.265 1.565-.233.267-.466.3-.866.1-.4-.2-1.688-.622-3.215-1.982-1.188-1.059-1.99-2.367-2.223-2.767-.233-.4-.025-.616.175-.815.179-.178.4-.466.6-.699.2-.233.267-.4.4-.666.133-.267.067-.5-.033-.7-.1-.2-.9-2.167-1.233-2.967-.325-.78-.655-.674-.9-.686L9.6 9.6c-.267 0-.7.1-1.067.5S7.333 11.3 7.333 13.267c0 1.966 1.434 3.867 1.634 4.133.2.267 2.82 4.307 6.833 6.034.955.412 1.7.658 2.282.843.959.305 1.832.262 2.52.159.769-.115 2.364-.966 2.698-1.9.333-.933.333-1.733.233-1.9-.1-.166-.366-.266-.766-.466z" />
+              </svg>
+            </span>
+            <span class="btn-label">
+              <span class="btn-title">WhatsApp</span>
+              <span class="btn-sub">Danushika</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Danushika &amp; Thusitha Engagement · January 01, 2027 · Skyloft, Kandy</p>
+    <p class="footer-dev">Developed by <a href="https://madeesha.me" target="_blank" rel="noopener">MadeeshaSK</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
